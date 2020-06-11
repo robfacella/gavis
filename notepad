@@ -1,0 +1,26 @@
+#[G]llery & [A]rchive [V]iew [I]mage [S]uite
+
+#Assortted Commands History from testing 1 liners. ########
+  894  xviewer --help
+  895  xviewer -w image1.png 
+  896  xviewer -w image2.jpg 
+  #Opens image but locks up terminal
+
+  897  xviewer -w image2.jpg &
+  898  xviewer -w image1.png &
+  #Open image as a 'background' process, terminal can continue running without interacting with window frame
+  # -w uses only a single window, will replace usage of prior Xviewer window
+
+  899  ls
+  900  ps
+  901  xviewer -w image1.png &
+  902  ps
+  903  xviewer -w image2.jpg &
+  904  ps
+  905  xviewer -w image2.jpg &
+  906  ps
+  #After running with '&' extentsion, the pID of the window is output.
+  #Running the line repeatedly changes the pID each time, and going back and forth does not seem to reuse the pID.
+
+  907  history 
+
