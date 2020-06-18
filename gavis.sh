@@ -22,7 +22,8 @@ fileInPath () {
 	fi
 	if [ $fileChoice == "1" ]
 	then
-		exit 0
+		ViewImageFile
+		#Opens BUT focus on new Window. I want cursor to remain in terminal.
 	fi
    done
 }
