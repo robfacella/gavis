@@ -2,6 +2,11 @@
 #Set IFS to new line. (Used to suppress WHITE-SPACES in filenames from splitting $file into a list, instead of being handled as a single STRING unit.)
 IFS=$'\n'
 
+MainMenu () {
+   GetPath
+   CalcDU
+
+}
 CalcDU () {
    startSize=0
    for file in $( find "$folder" -name "*.*" ); do
@@ -24,13 +29,15 @@ GetPath () {
 	echo "Enter a path(--h for more info): "
 	#folder="testFiles"
 	read folder
+	##Using "../" within a path Throws:
+        #expr: syntax error
+	##BUT the CalcDu still runs and outputs the same final number
 }
 
 
 EntryMsg
-GetPath
+MainMenu
 #echo "$folder"
-CalcDU
 
 ##Opens file location in a new window with the XVIEWER program.
 ##-w makes xviewer use a single window, will replace an old instance of itself INSTEAD of just opening a new instance. (Should help reduce acidental/negligent RAM leaks.)
