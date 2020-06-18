@@ -15,10 +15,14 @@ CalcDU () {
    ##This outputs 72 k total file size for the files within the testFiles directory
    ##HOWEVER, right clicking on testFiles and observing the directory's properties shows only 46.5 kB of disk usage.
 }
+EntryMsg () {
+   echo "Iterates over image files with xviewer"
+   echo "In a directory and all of its subdirectories."
+   echo ""
+}
 
-echo "Iterates over image files with xviewer"
-echo "In a directory and all of its subdirectories."
-echo ""
+EntryMsg
+
 echo "Enter a path(--h for more info): "
 folder="testFiles"
 #read folder
