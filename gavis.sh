@@ -13,16 +13,26 @@ fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
 	echo ""
 	echo "$file"
+	echo "1) Open with xviewer"
 	echo "q) to quit "
         read fileChoice
 	if [ $fileChoice == "q" ]
 	then
 		exit 0
 	fi
+	if [ $fileChoice == "1" ]
+	then
+		exit 0
+	fi
    done
 }
 ViewImageFile () {
-  echo "FOO"
+	##Opens file location in a new window with the XVIEWER program.
+	##-w makes xviewer use a single window, will replace an old instance of itself INSTEAD of just opening a new instance. (Should help reduce acidental/negligent RAM leaks.)
+	## & causes this to run as a separate process from this terminal/script, keeping the script from hanging until the newly opened process is killed.
+	xviewer -w $file &
+	##Stores the Process ID of the & generated process. in this case an xviewer window
+	viewerPID=$!
 }
 CalcDU () {
    thisSize=0
