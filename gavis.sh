@@ -18,7 +18,10 @@ fileInPath () {
         read fileChoice
 	if [ $fileChoice == "q" ]
 	then
-		exit 0
+		#Try to kill xviewer opened by script; exit afterward regardless 
+		#kill $viewerPID || exit 0 #PID has changed by this point??
+		pkill xviewer  || exit 0 #Kill by Name instead. Or just Exit if that fails.
+		exit 0 #DO exit anyway if killing xviewer worked
 	fi
 	if [ $fileChoice == "1" ]
 	then
@@ -40,6 +43,7 @@ ViewImageFile () {
 	xviewer -w $file &
 	##Stores the Process ID of the & generated process. in this case an xviewer window
 	viewerPID=$!
+	echo "$viewerPID"
 }
 CalcDU () {
    thisSize=0
