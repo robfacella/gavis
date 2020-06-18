@@ -5,18 +5,35 @@ IFS=$'\n'
 MainMenu () {
    GetPath
    CalcDU
-
+   startSize=$thisSize
+   echo "Starting Size: $startSize k"
+   fileInPath
+}
+fileInPath () {
+   for file in $( find "$folder" -name "*.*" ); do
+	echo ""
+	echo "$file"
+	echo "q) to quit "
+        read fileChoice
+	if [ $fileChoice == "q" ]
+	then
+		exit 0
+	fi
+   done
+}
+ViewImageFile () {
+  echo "FOO"
 }
 CalcDU () {
-   startSize=0
+   thisSize=0
    for file in $( find "$folder" -name "*.*" ); do
       	#Calculate starting Size of Files.
         #echo "$file"
-	val=$( du "$file" | awk '{print $1}' ) 
+	val=$( du "$file" | awk '{print $1}' )
 	#du|awk statement gets just size of files; stores in val
-	startSize=`expr $startSize + $val`
+	thisSize=`expr $thisSize + $val`
    done
-   echo "Starting size of File(s) within $folder: $startSize k "
+   #echo "Starting size of File(s) within $folder: $thisSize k "
    ##This outputs 72 k total file size for the files within the testFiles directory
    ##HOWEVER, right clicking on testFiles and observing the directory's properties shows only 46.5 kB of disk usage.
 }
