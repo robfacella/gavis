@@ -20,13 +20,15 @@ EntryMsg () {
    echo "In a directory and all of its subdirectories."
    echo ""
 }
+GetPath () {
+	echo "Enter a path(--h for more info): "
+	folder="testFiles"
+	#read folder
+}
+
 
 EntryMsg
-
-echo "Enter a path(--h for more info): "
-folder="testFiles"
-#read folder
-
+GetPath
 CalcDU
 
 ##Opens file location in a new window with the XVIEWER program.
