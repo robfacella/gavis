@@ -1,10 +1,10 @@
 #!/bin/bash
-#Set IFS to new line.
-#IFS=$'\n'
+#Set IFS to new line. (Used to suppress WHITE-SPACES in filenames from splitting $file into a list, instead of being handled as a single STRING unit.)
+IFS=$'\n'
 
 CalcDU () {
    startSize=0
-   for file in $( find "$folder" -name '*.*' ); do
+   for file in $( find "$folder" -name "*.*" ); do
       	#Calculate starting Size of Files.
         #echo "$file"
 	val=$( du "$file" | awk '{print $1}' ) 
@@ -22,13 +22,14 @@ EntryMsg () {
 }
 GetPath () {
 	echo "Enter a path(--h for more info): "
-	folder="testFiles"
-	#read folder
+	#folder="testFiles"
+	read folder
 }
 
 
 EntryMsg
 GetPath
+#echo "$folder"
 CalcDU
 
 ##Opens file location in a new window with the XVIEWER program.
