@@ -10,33 +10,39 @@ MainMenu () {
    fileInPath
 }
 handleFileChoice () {
+	echo ""
+	fileChoice="razzleDazzle"
+	while ! [ fileChoice == "0" ]
+	do
+		echo "$file"
+		echo "0) Next File in List"
+		echo "1) Open with xviewer"
+		#echo "2)"
+		echo "q) to quit "
+		read fileChoice
+		if [ $fileChoice == "q" ]
+		then
+			#Try to kill xviewer opened by script; exit afterward regardless 
+			#kill $viewerPID || exit 0 #PID has changed by this point??
+			pkill xviewer  || exit 0 #Kill by Name instead. Or just Exit if that fails.
+			exit 0 #DO exit anyway if killing xviewer worked
+		fi
+		if [ $fileChoice == "1" ]
+		then
+			ViewImageFile
+			#Opens BUT focus on new Window. I want cursor to remain in terminal.
 
+			sleep 1s
+			#Pause, giving xviewer a chance to open.
+			#Then shift control back to a window with the script name in the title
+			wmctrl -a gavis
+			#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
+		fi
+	done
 }
 fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
-	echo ""
-	echo "$file"
-	echo "1) Open with xviewer"
-	echo "q) to quit "
-        read fileChoice
-	if [ $fileChoice == "q" ]
-	then
-		#Try to kill xviewer opened by script; exit afterward regardless 
-		#kill $viewerPID || exit 0 #PID has changed by this point??
-		pkill xviewer  || exit 0 #Kill by Name instead. Or just Exit if that fails.
-		exit 0 #DO exit anyway if killing xviewer worked
-	fi
-	if [ $fileChoice == "1" ]
-	then
-		ViewImageFile
-		#Opens BUT focus on new Window. I want cursor to remain in terminal.
-
-		sleep 1s
-		#Pause, giving xviewer a chance to open.
-		#Then shift control back to a window with the script name in the title
-		wmctrl -a gavis
-		#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
-	fi
+	handleFileChoice
    done
 }
 ViewImageFile () {
