@@ -17,7 +17,8 @@ handleFileChoice () {
 		echo "$file"
 		echo "0) Next File in List"
 		echo "1) Open with xviewer"
-		#echo "2)"
+		echo "4) Shred File"
+		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "q) to quit "
 		read fileChoice
 		if [ $fileChoice == "q" ]
@@ -38,6 +39,11 @@ handleFileChoice () {
 			wmctrl -a gavis
 			#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
 		fi
+		if [ $fileChoice == "4" ]
+		then
+			#Shred File Randomly. (Single Pass)
+			echo ""
+		fi
 	done
 }
 fileInPath () {
@@ -52,7 +58,7 @@ ViewImageFile () {
 	xviewer -w $file &
 	##Stores the Process ID of the & generated process. in this case an xviewer window
 	viewerPID=$!
-	echo "$viewerPID"
+	#echo "$viewerPID"
 }
 CalcDU () {
    thisSize=0
