@@ -25,8 +25,7 @@ handleFileChoice () {
 		if [ $fileChoice == "q" ]
 		then
 			#Try to kill xviewer opened by script; exit afterward regardless 
-			#kill $viewerPID || exit 0 #PID has changed by this point??
-			pkill xviewer  || exit 0 #Kill by Name instead. Or just Exit if that fails.
+			KillXview
 			exit 0 #DO exit anyway if killing xviewer worked
 		fi
 		if [ $fileChoice == "1" ]
@@ -35,14 +34,14 @@ handleFileChoice () {
 		fi
 		if [ $fileChoice == "4" ]
 		then
-			pkill xviewer  || echo "xviewer window not found"
+			KillXview
 			#Shred File Randomly. (Single Pass)
 			echo "Overwrite $file with random data:"
 			shred -fv -n 1 $file
 		fi
 		if [ $fileChoice == "6" ]
 		then
-			pkill xviewer  || echo "xviewer window not found"
+			KillXview
 			#Shred File to 0s. (Single Pass) && Remove
 			echo "Zeroing $file and removing completely:"
 			shred -fvz -n 0 -u $file
@@ -99,7 +98,9 @@ GetPath () {
         #expr: syntax error
 	##BUT the CalcDu still runs and outputs the same final number
 }
-
+KillXview () {
+	pkill xviewer  || echo "xviewer window not found"
+}
 
 EntryMsg
 MainMenu
