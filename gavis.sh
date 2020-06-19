@@ -17,7 +17,7 @@ handleFileChoice () {
 		echo "$file"
 		echo "0) Next File in List"
 		echo "1) ReOpen with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
-
+		OpenInXviewer #Doing, just that.
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "q) to quit "
@@ -31,14 +31,7 @@ handleFileChoice () {
 		fi
 		if [ $fileChoice == "1" ]
 		then
-			ViewImageFile
-			#Opens BUT focus on new Window. I want cursor to remain in terminal.
-
-			sleep 1s
-			#Pause, giving xviewer a chance to open.
-			#Then shift control back to a window with the script name in the title
-			wmctrl -a gavis
-			#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
+			OpenInXviewer
 		fi
 		if [ $fileChoice == "4" ]
 		then
@@ -63,7 +56,13 @@ fileInPath () {
    done
 }
 OpenInXviewer () {
-
+	ViewImageFile
+	#Opens BUT focus on new Window. I want cursor to remain in terminal.
+	sleep 1s
+	#Pause, giving xviewer a chance to open.
+	#Then shift control back to a window with the script name in the title
+	wmctrl -a gavis
+	#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
 }
 ViewImageFile () {
 	##Opens file location in a new window with the XVIEWER program.
