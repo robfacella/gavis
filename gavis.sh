@@ -6,18 +6,20 @@ MainMenu () {
    GetPath
    CalcDU
    startSize=$thisSize
+   startFiles=$fileCount
    echo "Starting Size: $startSize k"
    fileInPath
 }
 handleFileChoice () {
 	echo ""
 	fileChoice="razzleDazzle"
+	OpenInXviewer
 	while [ $fileChoice != "0" ]
 	do
 		echo "$file"
 		echo "0) Next File in List"
 		echo "1) ReOpen with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
-		OpenInXviewer #Doing, just that.
+		#OpenInXviewer #Doing, just that.
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "q) to quit "
@@ -48,6 +50,8 @@ handleFileChoice () {
 			fileChoice="0"
 		fi
 	done
+	fileCount=`expr $fileCount - 1`
+	echo "Files Remaining: $fileCount / $startFiles"
 }
 fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
@@ -74,14 +78,17 @@ ViewImageFile () {
 }
 CalcDU () {
    thisSize=0
+   fileCount=0
    for file in $( find "$folder" -name "*.*" ); do
       	#Calculate starting Size of Files.
         #echo "$file"
 	val=$( du "$file" | awk '{print $1}' )
 	#du|awk statement gets just size of files; stores in val
 	thisSize=`expr $thisSize + $val`
+	fileCount=`expr $fileCount + 1`
    done
    #echo "Starting size of File(s) within $folder: $thisSize k "
+   echo "Files Found: $fileCount"
    ##This outputs 72 k total file size for the files within the testFiles directory
    ##HOWEVER, right clicking on testFiles and observing the directory's properties shows only 46.5 kB of disk usage.
 }
