@@ -9,6 +9,9 @@ MainMenu () {
    echo "Starting Size: $startSize k"
    fileInPath
 }
+handleFileChoice () {
+
+}
 fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
 	echo ""
