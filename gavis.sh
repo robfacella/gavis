@@ -36,14 +36,14 @@ handleFileChoice () {
 		fi
 		if [ $fileChoice == "4" ]
 		then
-			KillXview
+			#KillXview #Don't actually seem to need to.
 			#Shred File Randomly. (Single Pass)
 			echo "Overwrite $file with random data:"
 			shred -fv -n 1 $file
 		fi
 		if [ $fileChoice == "6" ]
 		then
-			KillXview
+			#KillXview #Don't seem to need to
 			#Shred File to 0s. (Single Pass) && Remove
 			echo "Zeroing $file and removing completely:"
 			shred -fvz -n 0 -u $file
