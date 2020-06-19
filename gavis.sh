@@ -16,7 +16,7 @@ handleFileChoice () {
 	do
 		echo "$file"
 		echo "0) Next File in List"
-		echo "1) Open with xviewer"
+		echo "1) Open with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "q) to quit "
@@ -41,8 +41,19 @@ handleFileChoice () {
 		fi
 		if [ $fileChoice == "4" ]
 		then
+			pkill xviewer  || echo "xviewer window not found"
 			#Shred File Randomly. (Single Pass)
-			echo ""
+			echo "Overwrite $file with random data:"
+			shred -fv -n 1 $file
+		fi
+		
+		if [ $fileChoice == "6" ]
+		then
+			pkill xviewer  || echo "xviewer window not found"
+			#Shred File to 0s. (Single Pass) && Remove
+			echo "Zeroing $file and removing completely:"
+			shred -fvz -n 0 -u $file
+			fileChoice="0"
 		fi
 	done
 }
