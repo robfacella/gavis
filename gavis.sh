@@ -12,7 +12,7 @@ MainMenu () {
 handleFileChoice () {
 	echo ""
 	fileChoice="razzleDazzle"
-	while ! [ fileChoice == "0" ]
+	while [ $fileChoice != "0" ]
 	do
 		echo "$file"
 		echo "0) Next File in List"
