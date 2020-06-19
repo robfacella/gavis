@@ -16,7 +16,8 @@ handleFileChoice () {
 	do
 		echo "$file"
 		echo "0) Next File in List"
-		echo "1) Open with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
+		echo "1) ReOpen with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
+
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "q) to quit "
@@ -46,7 +47,6 @@ handleFileChoice () {
 			echo "Overwrite $file with random data:"
 			shred -fv -n 1 $file
 		fi
-		
 		if [ $fileChoice == "6" ]
 		then
 			pkill xviewer  || echo "xviewer window not found"
@@ -61,6 +61,9 @@ fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
 	handleFileChoice
    done
+}
+OpenInXviewer () {
+
 }
 ViewImageFile () {
 	##Opens file location in a new window with the XVIEWER program.
