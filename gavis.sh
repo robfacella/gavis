@@ -64,8 +64,9 @@ OpenInXviewer () {
 	sleep 1s
 	#Pause, giving xviewer a chance to open.
 	#Then shift control back to a window with the script name in the title
-	wmctrl -a gavis
+	wmctrl -a gavis ##ONLY WORKS WHEN SCRIPT IS RUN FROM WITHIN GAVIS Directory
 	#Does not seem to be case sensitive, will need work around for MULTIPLE windows with regex matching... blehh
+##ONLY WORKS WHEN SCRIPT IS RUN FROM WITHIN GAVIS
 }
 ViewImageFile () {
 	##Opens file location in a new window with the XVIEWER program.
