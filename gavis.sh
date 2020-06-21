@@ -57,6 +57,7 @@ fileInPath () {
    for file in $( find "$folder" -name "*.*" ); do
 	handleFileChoice
    done
+   KillXview #Close when Done with File Set
 }
 OpenInXviewer () {
 	ViewImageFile
