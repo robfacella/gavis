@@ -22,6 +22,7 @@ handleFileChoice () {
 		#OpenInXviewer #Doing, just that.
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
+		echo "9) Prompt number of files to skip over."
 		echo "q) to quit "
 		read fileChoice
 		if [ $fileChoice == "q" ]
@@ -29,33 +30,59 @@ handleFileChoice () {
 			#Try to kill xviewer opened by script; exit afterward regardless 
 			KillXview
 			exit 0 #DO exit anyway if killing xviewer worked
-		fi
-		if [ $fileChoice == "1" ]
+		elif [ $fileChoice == "1" ]
 		then
 			OpenInXviewer
-		fi
-		if [ $fileChoice == "4" ]
+		elif [ $fileChoice == "4" ]
 		then
 			#KillXview #Don't actually seem to need to.
 			#Shred File Randomly. (Single Pass)
 			echo "Overwrite $file with random data:"
 			shred -fv -n 1 $file
-		fi
-		if [ $fileChoice == "6" ]
+		elif [ $fileChoice == "6" ]
 		then
 			#KillXview #Don't seem to need to
 			#Shred File to 0s. (Single Pass) && Remove
 			echo "Zeroing $file and removing completely:"
 			shred -fvz -n 0 -u $file
 			fileChoice="0"
+		elif [ $fileChoice == "9" ]
+		then
+			echo "How many files would you like to skip? (Include THIS one.)"
+			read skipCounter
+			while ! [[ "$skipCounter" =~ ^[0-9]+$ ]]
+    			do
+        			echo "Sorry integers only"
+				read skipCounter
+			done
+			skipCounter=`expr $skipCounter - 1`
+			if [ $skipCounter -ge 0 ]
+			then
+				fileChoice="0"
+				echo "moving ahead $skipCounter files. (Plus this one.)"
+			fi
+			#Else they chose skip by mistake and entered 0 or less
+		elif [ $fileChoice == "0" ]
+		then
+			echo " "
+		else
+			echo "Invalid Input"
 		fi
 	done
-	fileCount=`expr $fileCount - 1`
-	echo "Files Remaining: $fileCount / $startFiles"
 }
 fileInPath () {
+   skipCounter=0
    for file in $( find "$folder" -name "*.*" ); do
-	handleFileChoice
+	if [ $skipCounter -le 0 ]
+	then
+		handleFileChoice
+	else
+		skipCounter=`expr $skipCounter - 1`
+		echo "Skipped $file"
+	fi
+	#Moved File Counter here.
+	fileCount=`expr $fileCount - 1`
+	echo "Files Remaining: $fileCount / $startFiles"
    done
    KillXview #Close when Done with File Set
 }
