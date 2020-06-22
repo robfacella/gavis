@@ -3,12 +3,22 @@
 IFS=$'\n'
 
 MainMenu () {
+#Top Level Menu
+   mainM="Life has Many Doors, Ed Boy."
+   while [ $mainM != "q" ]
+   do
+	ViewShred
+   done
+}
+ViewShred () {
+####Main View/Shred Block###
    GetPath
    CalcDU
    startSize=$thisSize
    startFiles=$fileCount
    echo "Starting Size: $startSize k"
    fileInPath
+
 }
 handleFileChoice () {
 	echo ""
