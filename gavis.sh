@@ -25,6 +25,7 @@ handleFileChoice () {
 		echo "9) Prompt number of files to skip over."
 		echo "q) to quit "
 		read fileChoice
+		#Throws "unary operator expected" if left blank (ie, just hit enter) and counts as a 0?{moves to next file} but ALSO as invalid input{displays the else case message}???
 		if [ $fileChoice == "q" ]
 		then
 			#Try to kill xviewer opened by script; exit afterward regardless 
@@ -71,7 +72,7 @@ handleFileChoice () {
 	done
 }
 fileInPath () {
-   skipCounter=0
+   skipCounter=0 #Number of Files to Skip Over in the File Queue. #Useful in large file queues, especially if a break is needed for some reason, or to go back a few entries by restarting and jumping by <place in queue> - <how far back you need to go>.
    for file in $( find "$folder" -name "*.*" ); do
 	if [ $skipCounter -le 0 ]
 	then
@@ -106,8 +107,8 @@ ViewImageFile () {
 	#echo "$viewerPID"
 }
 CalcDU () {
-   thisSize=0
-   fileCount=0
+   thisSize=0  #Size of Files found. (~ kb)
+   fileCount=0 #Number of Files found.
    for file in $( find "$folder" -name "*.*" ); do
       	#Calculate starting Size of Files.
         #echo "$file"
@@ -135,6 +136,7 @@ GetPath () {
 	##BUT the CalcDu still runs and outputs the same final number
 }
 KillXview () {
+	#Close xviewer window if found, else print the debug msg.
 	pkill xviewer  || echo "xviewer window not found"
 }
 
