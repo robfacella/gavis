@@ -11,7 +11,7 @@ MainMenu () {
 	echo "4) Pack a Directory into a Tarball. Shred Directory if Successful."
 	echo "7) UnPack a Directory from a Tarball. Shred Tarball if Successful."
 	echo "q) to quit "
-		
+
 	read mainM
 	if [ $mainM == "q" ]
 	then
@@ -30,6 +30,7 @@ MainMenu () {
 	else
 		echo "Invalid Input"
 	fi
+	echo " "
    done
 }
 ###Tar Block#####
@@ -46,6 +47,7 @@ TarPack () {
 	#cd $infile/ && tar -zcvf ../$outfile.tar . && cd -
 
 	##Creates and appends to a tarball named test.tar : all files found within test files.
+	#Leaves behind a folder chain in the tar...
 	find $infile -name "*.*" -exec tar -rvf $outfile {} \; && find $infile -depth -type f -exec shred -fvz -n1 -u {} \; && 	rm -Rv $infile
 	##If the first action succeeds: shred and remove everything from infile recursively.
 	##Does not remove folders, need to go back over with rm -R
