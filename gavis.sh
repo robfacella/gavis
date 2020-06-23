@@ -59,8 +59,8 @@ TarUPack () {
 	SetInFile
 	echo "Enter location to extract to (blank works for HERE): "
 	SetOutFile
-
-	tar -xvf $infile $outfile && shred -fvz -n1 -u $infile
+	#Unpacking to "/" does work when the file chain goes all the way through root, though it is not optimal...
+	tar -xvf $infile -C $outfile && shred -fvz -n1 -u $infile
 
 }
 #$IFILE / $OFILE format, like dd, for future command line use...
