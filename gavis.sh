@@ -13,7 +13,7 @@ MainMenu () {
 	echo "cd) Prompt to Change working Directory."
 	#echo "pwd) Print working Directory."
 	#echo "ls) List Files"
-	echo "q) to quit "
+	echo "q) to quit"
 
 	read mainM
 	if [ $mainM == "q" ]
@@ -115,7 +115,7 @@ handleFileChoice () {
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "9) Prompt number of files to skip over."
-		echo "q) to quit "
+		echo "q) to quit [To return to Main Menu, skip whole list.]"
 		read fileChoice
 		#Throws "unary operator expected" if left blank (ie, just hit enter) and counts as a 0?{moves to next file} but ALSO as invalid input{displays the else case message}???
 		if [ $fileChoice == "q" ]
