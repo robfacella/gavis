@@ -78,6 +78,8 @@ TarUPack () {
 	SetOutFile
 	#Unpacking to "/" does work when the file chain goes all the way through root, though it is not optimal...
 	tar -xvf $infile -C $outfile && shred -fvz -n1 -u $infile
+	##Takes a zip file without a top level containor directory and extracts it into a container file with the name the zip file had, then shred
+	#sudo mkdir $filename && sudo unzip $filename.zip -d $filename && sudo shred -fvz -n 0 -u $filename.zip
 
 }
 #$IFILE / $OFILE format, like dd, for future command line use...
