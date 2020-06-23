@@ -19,9 +19,13 @@ TarPack () {
         SetInFile
 	echo "Enter an output file: "
 	SetOutFile
+	## Also leaves behind a "." directory
+	#tar -czvf $outfile.tar -C $infile .
+	##Still leaves behind a top level directory named "." ...
+	#cd $infile/ && tar -zcvf ../$outfile.tar . && cd -
 
 	##Creates and appends to a tarball named test.tar : all files found within test files.
-	find testFiles -name "*.*" -exec tar -rvf test.tar {} \;
+	find $infile -name "*.*" -exec tar -rvf $outfile {} \;
 }
 #Unpack
 #Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
