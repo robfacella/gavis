@@ -7,7 +7,8 @@ MainMenu () {
    mainM="Life has Many Doors, Ed Boy."
    while [ $mainM != "q" ]
    do
-	#ViewShred
+	read mainM
+	ViewShred
 	TarPack
 	TarUPack
    done
