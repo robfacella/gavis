@@ -10,6 +10,9 @@ MainMenu () {
 	echo "1) View/Shred Files"
 	echo "4) Pack a Directory into a Tarball. Shred Directory if Successful."
 	echo "7) UnPack a Directory from a Tarball. Shred Tarball if Successful."
+	echo "cd) Prompt to Change working Directory."
+	#echo "pwd) Print working Directory."
+	#echo "ls) List Files"
 	echo "q) to quit "
 
 	read mainM
@@ -27,6 +30,19 @@ MainMenu () {
 	elif [ $mainM == "7" ]
 	then
 		TarUPack
+	elif [ $mainM == "cd" ]
+	then
+		#Change Directory
+		GetPath
+		cd $folder
+		#Work around for TAR Archiving all directories in path leading up to goal folder.
+		pwd
+	elif [ $mainM == "pwd" ]
+	then
+		pwd
+	elif [ $mainM == "ls" ]
+	then
+		ls
 	else
 		echo "Invalid Input"
 	fi
@@ -39,6 +55,7 @@ MainMenu () {
 TarPack () {
 	echo "Enter a Directory to Tar. (Recursively): "
         SetInFile
+	echo "WARNING- Failure to enter a .tar output file can result in data loss. Blank output file WILL!"
 	echo "Enter an output file: "
 	SetOutFile
 	## Also leaves behind a "." directory
