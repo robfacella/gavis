@@ -8,7 +8,8 @@ MainMenu () {
    while [ $mainM != "q" ]
    do
 	#ViewShred
-	TarPack
+	#TarPack
+	TarUPack
    done
 }
 ###Tar Block#####
@@ -30,7 +31,12 @@ TarPack () {
 #Unpack
 #Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
 TarUPack () {
-	echo ""
+	echo "Enter Tarball to Unpack: "
+	SetInFile
+	echo "Enter location to extract to: "
+	SetOutFile
+
+	tar -xvf $infile $outfile
 }
 #$IFILE / $OFILE format, like dd, for future command line use...
 SetInFile () {
