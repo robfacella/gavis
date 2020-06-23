@@ -10,8 +10,18 @@ MainMenu () {
 	ViewShred
    done
 }
-ViewShred () {
+###Tar Block#####
+#Pack
+#Get a Path to a $DIRECTORY, put the Recursive contents of that directory into $DIRECTORY.tar
+
+#Unpack
+#Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
+
+#or $IFILE / $OFILE format like dd for command line use...
+
+
 ####Main View/Shred Block###
+ViewShred () {
    GetPath
    CalcDU
    startSize=$thisSize
@@ -150,6 +160,7 @@ KillXview () {
 	pkill xviewer  || echo "xviewer window not found"
 }
 
+##Run
 EntryMsg
 MainMenu
 #echo "$folder"
