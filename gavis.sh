@@ -18,7 +18,14 @@ MainMenu () {
 #Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
 
 #or $IFILE / $OFILE format like dd for command line use...
-
+SetInFile () {
+	GetPath #Sets Value of $folder
+	infile="$folder"
+}
+SetOutFile () {
+	GetPath #Sets Value of $folder
+	outfile="$folder"
+}
 
 ####Main View/Shred Block###
 ViewShred () {
