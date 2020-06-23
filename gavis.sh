@@ -8,7 +8,7 @@ MainMenu () {
    while [ $mainM != "q" ]
    do
 	#ViewShred
-	#TarPack
+	TarPack
 	TarUPack
    done
 }
@@ -26,12 +26,9 @@ TarPack () {
 	#cd $infile/ && tar -zcvf ../$outfile.tar . && cd -
 
 	##Creates and appends to a tarball named test.tar : all files found within test files.
-	find $infile -name "*.*" -exec tar -rvf $outfile {} \;
-	echo "$!"
-	##If the prior action succeeds: shred and remove everything from infile recursively.
-	#find $infile -depth -type f -exec shred -fvz -n1 -u {} \;
+	find $infile -name "*.*" -exec tar -rvf $outfile {} \; && find $infile -depth -type f -exec shred -fvz -n1 -u {} \; && 	rm -Rv $infile
+	##If the first action succeeds: shred and remove everything from infile recursively.
 	##Does not remove folders, need to go back over with rm -R
-	#rm -Rv $infile
 }
 #Unpack
 #Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
@@ -41,9 +38,8 @@ TarUPack () {
 	echo "Enter location to extract to (blank works for HERE): "
 	SetOutFile
 
-	tar -xvf $infile $outfile
-	#echo "$!" #Did not help in any meaningful way.
-	shred -fvz -n1 -u $infile
+	tar -xvf $infile $outfile && shred -fvz -n1 -u $infile
+
 }
 #$IFILE / $OFILE format, like dd, for future command line use...
 SetInFile () {
