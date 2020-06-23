@@ -7,10 +7,29 @@ MainMenu () {
    mainM="Life has Many Doors, Ed Boy."
    while [ $mainM != "q" ]
    do
+	echo "1) View/Shred Files"
+	echo "4) Pack a Directory into a Tarball. Shred Directory if Successful."
+	echo "7) UnPack a Directory from a Tarball. Shred Tarball if Successful."
+	echo "q) to quit "
+		
 	read mainM
-	ViewShred
-	TarPack
-	TarUPack
+	if [ $mainM == "q" ]
+	then
+		#Try to kill xviewer opened by script; exit afterward regardless 
+		KillXview
+		exit 0 #DO exit anyway if killing xviewer worked
+	elif [ $mainM == "1" ]
+	then
+		ViewShred
+	elif [ $mainM == "4" ]
+	then
+		TarPack
+	elif [ $mainM == "7" ]
+	then
+		TarUPack
+	else
+		echo "Invalid Input"
+	fi
    done
 }
 ###Tar Block#####
