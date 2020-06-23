@@ -7,23 +7,34 @@ MainMenu () {
    mainM="Life has Many Doors, Ed Boy."
    while [ $mainM != "q" ]
    do
-	ViewShred
+	#ViewShred
+	TarPack
    done
 }
 ###Tar Block#####
 #Pack
 #Get a Path to a $DIRECTORY, put the Recursive contents of that directory into $DIRECTORY.tar
+TarPack () {
+	echo "Enter a Directory to Tar. (Recursively): "
+        SetInFile
+	echo "Enter an output file: "
+	SetOutFile
 
+	##Creates and appends to a tarball named test.tar : all files found within test files.
+	find testFiles -name "*.*" -exec tar -rvf test.tar {} \;
+}
 #Unpack
 #Get a Path to a $NAME.tar file and extract its contents to a directory named $NAME
-
-#or $IFILE / $OFILE format like dd for command line use...
+TarUPack () {
+	echo ""
+}
+#$IFILE / $OFILE format, like dd, for future command line use...
 SetInFile () {
-	GetPath #Sets Value of $folder
+	GetPath #Sets Value of $infile from $folder
 	infile="$folder"
 }
 SetOutFile () {
-	GetPath #Sets Value of $folder
+	GetPath #Sets Value of $outfile from $folder
 	outfile="$folder"
 }
 
