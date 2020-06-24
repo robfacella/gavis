@@ -155,6 +155,12 @@ handleFileChoice () {
 				echo "moving ahead $skipCounter files. (Plus this one.)"
 			fi
 			#Else they chose skip by mistake and entered 0 or less
+		elif [ $fileChoice == "vid" ]
+		then
+			xplayer --play $file &
+		elif [ $fileChoice == "vidClose" ]
+		then
+			KillXplay
 		elif [ $fileChoice == "0" ]
 		then
 			echo " "
@@ -231,7 +237,10 @@ KillXview () {
 	#Close xviewer window if found, else print the debug msg.
 	pkill xviewer  || echo "xviewer window not found"
 }
-
+KillXplay () {
+	pkill xplayer  || echo "xplayer window not found"
+	#Close Xplayer window if Found
+}
 ##Run
 EntryMsg
 MainMenu
