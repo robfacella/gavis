@@ -2,6 +2,8 @@
 #Set IFS to new line. (Used to suppress WHITE-SPACES in filenames from splitting $file into a list, instead of being handled as a single STRING unit.)
 IFS=$'\n'
 
+##For RaspberryPi see: gpicview --help
+
 MainMenu () {
 #Top Level Menu
    mainM="Life has Many Doors, Ed Boy."
