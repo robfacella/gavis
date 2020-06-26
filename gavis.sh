@@ -68,6 +68,7 @@ TarPack () {
 	##Creates and appends to a tarball named test.tar : all files found within test files.
 	#Leaves behind a folder chain in the tar...
 	find $infile -name "*.*" -exec tar -rvf $outfile {} \; && find $infile -depth -type f -exec shred -fvz -n1 -u {} \; && 	rm -Rv $infile
+	echo "I should add a progress gauge to to removal process, file x of n,,,"
 	##If the first action succeeds: shred and remove everything from infile recursively.
 	##Does not remove folders, need to go back over with rm -R
 }
