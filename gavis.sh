@@ -2,6 +2,12 @@
 #Set IFS to new line. (Used to suppress WHITE-SPACES in filenames from splitting $file into a list, instead of being handled as a single STRING unit.)
 IFS=$'\n'
 
+##on Mint
+##image
+imageViewer="xviewer"
+vidViewer="xplayer"
+##video
+
 ##For RaspberryPi see: gpicview --help
 
 MainMenu () {
@@ -202,7 +208,7 @@ ViewImageFile () {
 	##Opens file location in a new window with the XVIEWER program.
 	##-w makes xviewer use a single window, will replace an old instance of itself INSTEAD of just opening a new instance. (Should help reduce acidental/negligent RAM leaks.)
 	## & causes this to run as a separate process from this terminal/script, keeping the script from hanging until the newly opened process is killed.
-	xviewer -w $file &
+	$imageViewer -w $file &
 	##Stores the Process ID of the & generated process. in this case an xviewer window
 	viewerPID=$!
 	#echo "$viewerPID"
@@ -238,7 +244,7 @@ GetPath () {
 }
 KillXview () {
 	#Close xviewer window if found, else print the debug msg.
-	pkill xviewer  || echo "xviewer window not found"
+	pkill $imageViewer  || echo "xviewer window not found"
 }
 KillXplay () {
 	pkill xplayer  || echo "xplayer window not found"
