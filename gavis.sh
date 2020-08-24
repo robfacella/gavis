@@ -9,6 +9,9 @@ imageViewer="xviewer"
 vidViewer="xplayer"
 
 ##For RaspberryPi see: gpicview --help
+##
+#imageViewer="gpicview"
+#nope, different command formatting, -w option will crash
 
 MainMenu () {
 #Top Level Menu
