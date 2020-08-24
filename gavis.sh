@@ -5,8 +5,8 @@ IFS=$'\n'
 ##on Mint
 ##image
 imageViewer="xviewer"
-vidViewer="xplayer"
 ##video
+vidViewer="xplayer"
 
 ##For RaspberryPi see: gpicview --help
 
@@ -70,7 +70,6 @@ TarPack () {
 	#tar -czvf $outfile.tar -C $infile .
 	##Still leaves behind a top level directory named "." ...
 	#cd $infile/ && tar -zcvf ../$outfile.tar . && cd -
-
 	##Creates and appends to a tarball named test.tar : all files found within test files.
 	#Leaves behind a folder chain in the tar...
 	find $infile -name "*.*" -exec tar -rvf $outfile {} \; && find $infile -depth -type f -exec shred -fvz -n1 -u {} \; && 	rm -Rv $infile
@@ -120,7 +119,7 @@ handleFileChoice () {
 		echo "$file"
 		echo "0) Next File in List"
 		echo "1) ReOpen with xviewer" #Could do this by default, even unsupported file types TRY to open successfully.
-		#OpenInXviewer #Doing, just that.
+		echo "2) Open as Video"
 		echo "4) Shred File"
 		echo "6) Shred & remove File (Auto NEXT file in list.)"
 		echo "9) Prompt number of files to skip over."
@@ -135,6 +134,9 @@ handleFileChoice () {
 		elif [ $fileChoice == "1" ]
 		then
 			OpenInXviewer
+		elif [ $fileChoice == "2" ]
+		then
+			$vidViewer --play $file &
 		elif [ $fileChoice == "4" ]
 		then
 			#KillXview #Don't actually seem to need to.
@@ -166,7 +168,7 @@ handleFileChoice () {
 			#Else they chose skip by mistake and entered 0 or less
 		elif [ $fileChoice == "vid" ]
 		then
-			xplayer --play $file &
+			$vidViewer --play $file &
 		elif [ $fileChoice == "vidClose" ]
 		then
 			KillXplay
@@ -244,10 +246,10 @@ GetPath () {
 }
 KillXview () {
 	#Close xviewer window if found, else print the debug msg.
-	pkill $imageViewer  || echo "xviewer window not found"
+	pkill $imageViewer  || echo "$imageViewer window not found"
 }
 KillXplay () {
-	pkill xplayer  || echo "xplayer window not found"
+	pkill $vidViewer  || echo "$vidViewer window not found"
 	#Close Xplayer window if Found
 }
 ##Run
