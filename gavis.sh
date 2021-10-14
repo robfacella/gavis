@@ -4,14 +4,15 @@ IFS=$'\n'
 
 ##on Mint
 ##image
-imageViewer="xviewer"
+#imageViewer="xviewer -w"
 ##video
 vidViewer="xplayer"
 
 ##For RaspberryPi see: gpicview --help
 ##
-#imageViewer="gpicview"
+imageViewer="gpicview"
 #nope, different command formatting, -w option will crash
+vidViewer="vlc"
 
 MainMenu () {
 #Top Level Menu
@@ -148,7 +149,7 @@ handleFileChoice () {
 			shred -fv -n 1 $file
 		elif [ $fileChoice == "6" ]
 		then
-			#KillXview #Don't seem to need to
+			KillXview #Don't seem to need to for Mint ## DOES NEED on Raspi
 			#Shred File to 0s. (Single Pass) && Remove
 			echo "Zeroing $file and removing completely:"
 			shred -fvz -n 0 -u $file
@@ -178,6 +179,7 @@ handleFileChoice () {
 		elif [ $fileChoice == "0" ]
 		then
 			echo " "
+			KillXview
 		else
 			echo "Invalid Input"
 		fi
@@ -213,7 +215,10 @@ ViewImageFile () {
 	##Opens file location in a new window with the XVIEWER program.
 	##-w makes xviewer use a single window, will replace an old instance of itself INSTEAD of just opening a new instance. (Should help reduce acidental/negligent RAM leaks.)
 	## & causes this to run as a separate process from this terminal/script, keeping the script from hanging until the newly opened process is killed.
-	$imageViewer -w $file &
+	#mint
+	#$imageViewer -w $file &
+	#raspi
+	$imageViewer $file &
 	##Stores the Process ID of the & generated process. in this case an xviewer window
 	viewerPID=$!
 	#echo "$viewerPID"
