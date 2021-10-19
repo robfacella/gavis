@@ -22,13 +22,13 @@ DimensionCheck () {
 		#echo "Width: $width ; Height: $height"
 		let toSave++
 	fi
-	echo "To Purge: $toPurge"
-	echo "To Save: $toSave"
 }
 FileInPath () {
 	for image in $( find "$folder" -name "*.png"); do
 		DimensionCheck
 	done
+	echo "To Purge: $toPurge"
+	echo "To Save: $toSave"
 }
 
 FileInPath
