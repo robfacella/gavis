@@ -18,10 +18,11 @@ DimensionCheck () {
 	if [ $width -lt $minW ] || [ $height -lt $minH ]
 	then
 		#echo "at least one of the dimension is below minimum threshold"
-		
+		shred -fz -n0 -u $image
 		let toPurge++
+		echo "purged"
 	else
-		#echo "Width: $width ; Height: $height"
+		echo "Width: $width ; Height: $height"
 		let toSave++
 	fi
 }
