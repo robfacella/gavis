@@ -1,4 +1,6 @@
 #!/bin/bash
+IFS=$'\n'
+startTime=`date +%s`
 folder="/media/pi/38*"
 cd $folder
 folder="MintPn*"
@@ -13,5 +15,10 @@ do
 	#echo "$i - $file"
 	#let i++
 	#$file
-	identify -format "%# %f\n" $file
+	identify -format "%f %#\n" $file >> fileNameHash.txt
 done
+
+endTime=`date +%s`
+runtime=$((endTime-startTime))
+echo "Total Runtime in seconds: $runtime"
+
