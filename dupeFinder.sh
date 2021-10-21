@@ -10,7 +10,7 @@ cd $folder
 echo $( pwd )
 files=$( ls -d $PWD/* )
 i=0
-for file in {0..${files}}
+for file in {$files}
 do
 	#echo "$i - $file"
 	#let i++

@@ -1,0 +1,20 @@
+identify-im6.q16: unable to open image `{0../media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/02195456.png': No such file or directory @ error/blob.c/OpenBlob/2874.
+identify-im6.q16: cHRM: invalid chromaticities `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/03531112.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/103448368.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/111699330.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/145352750.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: iCCP: profile 'Photoshop ICC profile': 'RGB ': RGB color space not permitted on grayscale PNG `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/323661576.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: iCCP: profile 'Photoshop ICC profile': 'RGB ': RGB color space not permitted on grayscale PNG `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/323738528.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+identify-im6.q16: unable to open image `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/99858122.png}': No such file or directory @ error/blob.c/OpenBlob/2874.
+identify-im6.q16: no decode delegate for this image format `' @ error/constitute.c/ReadImage/560.
+
+unable to open image `{0../media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/02195456.png': No such file or directory @ error/blob.c/OpenBlob/2874.
+invalid chromaticities `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/03531112.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/103448368.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/111699330.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+iCCP: profile 'default_rgb.icc': 0h: PCS illuminant is not D50 `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/145352750.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+iCCP: profile 'Photoshop ICC profile': 'RGB ': RGB color space not permitted on grayscale PNG `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/323661576.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+iCCP: profile 'Photoshop ICC profile': 'RGB ': RGB color space not permitted on grayscale PNG `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/323738528.png' @ warning/png.c/MagickPNGWarningHandler/1667.
+unable to open image `/media/pi/38B62D40724FA264/MintPng_Fri_Oct_15_23_41_32_2021/png/99858122.png}': No such file or directory @ error/blob.c/OpenBlob/2874.
+no decode delegate for this image format `' @ error/constitute.c/ReadImage/560.
+
