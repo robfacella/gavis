@@ -110,6 +110,7 @@ ViewShred () {
    CalcDU
    startSize=$thisSize
    startFiles=$fileCount
+   fileLeft=$startFiles
    echo "Starting Size: $startSize k"
    fileInPath
 
@@ -154,6 +155,7 @@ handleFileChoice () {
 			echo "Zeroing $file and removing completely:"
 			shred -fvz -n 0 -u $file
 			fileChoice="0"
+			let fileLeft--
 		elif [ $fileChoice == "9" ]
 		then
 			echo "How many files would you like to skip? (Include THIS one.)"
@@ -197,7 +199,7 @@ fileInPath () {
 	fi
 	#Moved File Counter here.
 	fileCount=`expr $fileCount - 1`
-	echo "Files Remaining: $fileCount / $startFiles"
+	echo "Files Remaining: $fileCount / $fileLeft"
    done
    KillXview #Close when Done with File Set
 }
@@ -224,6 +226,7 @@ ViewImageFile () {
 	#echo "$viewerPID"
 }
 CalcDU () {
+   startTime=`date +%s`
    thisSize=0  #Size of Files found. (~ kb)
    fileCount=0 #Number of Files found.
    for file in $( find "$folder" -name "*.*" ); do
@@ -238,6 +241,9 @@ CalcDU () {
    echo "Files Found: $fileCount"
    ##This outputs 72 k total file size for the files within the testFiles directory
    ##HOWEVER, right clicking on testFiles and observing the directory's properties shows only 46.5 kB of disk usage.
+   endTime=`date +%s`
+   runtime=$((endTime-startTime))
+   echo "Total Runtime in seconds: $runtime"
 }
 EntryMsg () {
    echo "Iterates over image files with xviewer"
